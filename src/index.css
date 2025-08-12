@@ -104,5 +104,5 @@ All colors MUST be HSL.
     background-size: cover;
   }
 
-  h1, .font-display { @apply font-display; }
+  h1 { @apply font-display; }
 }
