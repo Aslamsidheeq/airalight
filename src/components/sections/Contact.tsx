@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MessageSquare } from "lucide-react";
+import Reveal from "@/components/animations/Reveal";
 
 const Contact = () => {
   return (

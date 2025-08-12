@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Home, Building2, ShowerHead, Sofa, MoveRight, Sparkles, Utensils, Bath, Droplets } from "lucide-react";
+import Reveal from "@/components/animations/Reveal";
+import StaggerReveal from "@/components/animations/StaggerReveal";
 
 const services = [
   { title: "Home Cleaning", icon: Home, desc: "Regular, reliable cleaning for apartments and villas." },
@@ -15,26 +17,33 @@ const services = [
 ];
 
 const Services = () => {
+  const serviceCards = services.map(({ title, icon: Icon, desc }) => (
+    <Card key={title} className="group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 cursor-pointer active:scale-95 border-border/50 hover:border-primary/20">
+      <CardHeader>
+        <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3">
+          <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
+        </div>
+        <CardTitle className="mt-3 font-display text-xl group-hover:text-primary transition-colors duration-300">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{desc}</CardContent>
+    </Card>
+  ));
+
   return (
-    <section id="services" className="py-16 md:py-24">
+    <section id="services" className="py-16 md:py-24 overflow-hidden">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center mb-10 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-display font-bold">Our Cleaning Services</h2>
-          <p className="mt-3 text-muted-foreground">Trusted professionals delivering spotless results across Dubai.</p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ title, icon: Icon, desc }) => (
-            <Card key={title} className="animate-scale-in transition-transform hover:-translate-y-0.5 hover:shadow-glow">
-              <CardHeader>
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-secondary text-primary">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <CardTitle className="mt-2 font-display text-xl">{title}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">{desc}</CardContent>
-            </Card>
-          ))}
-        </div>
+        <Reveal className="mx-auto max-w-2xl text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-display font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Our Cleaning Services</h2>
+          <p className="mt-3 text-muted-foreground text-lg">Trusted professionals delivering spotless results across Dubai.</p>
+        </Reveal>
+        
+        <StaggerReveal 
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          staggerDelay={150}
+          direction="up"
+        >
+          {serviceCards}
+        </StaggerReveal>
       </div>
     </section>
   );

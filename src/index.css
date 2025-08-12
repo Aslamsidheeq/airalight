@@ -108,5 +108,27 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+  .hover-scale {
+    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-primary/20;
+  }
+
+  .click-feedback {
+    @apply active:scale-95 transition-transform duration-150;
+  }
+
+  .nav-link {
+    @apply relative transition-all duration-300 hover:text-primary;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
 }
