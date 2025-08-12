@@ -18,13 +18,13 @@ const Services = () => {
   return (
     <section id="services" className="py-16 md:py-24">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center mb-10">
+        <div className="mx-auto max-w-2xl text-center mb-10 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-display font-bold">Our Cleaning Services</h2>
           <p className="mt-3 text-muted-foreground">Trusted professionals delivering spotless results across Dubai.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(({ title, icon: Icon, desc }) => (
-            <Card key={title} className="hover:shadow-glow transition-shadow">
+            <Card key={title} className="animate-scale-in transition-transform hover:-translate-y-0.5 hover:shadow-glow">
               <CardHeader>
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-secondary text-primary">
                   <Icon className="h-5 w-5" />

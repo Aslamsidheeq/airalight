@@ -106,3 +106,7 @@ All colors MUST be HSL.
 
   h1 { @apply font-display; }
 }
+
+@layer components {
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+}

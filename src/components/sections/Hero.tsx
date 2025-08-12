@@ -50,7 +50,7 @@ const Hero = () => {
             src={heroImage}
             alt="Pristine modern living room and kitchen with subtle cleaning accents"
             loading="eager"
-            className="w-full rounded-xl shadow-glow object-cover"
+            className="w-full rounded-xl shadow-glow object-cover animate-scale-in"
           />
         </div>
       </div>
