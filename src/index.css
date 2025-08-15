@@ -102,6 +102,11 @@ All colors MUST be HSL.
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    /* Smooth scrolling for better UX */
+    scroll-behavior: smooth;
+    /* Mobile scroll optimization */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: smooth;
   }
 
   h1 { @apply font-display; }
@@ -130,5 +135,20 @@ All colors MUST be HSL.
 
   .nav-link:hover::after {
     @apply w-full;
+  }
+
+  .scroll-fade {
+    @apply transition-all duration-500 ease-out;
+  }
+  
+  /* Mobile-specific scroll improvements */
+  @media (max-width: 768px) {
+    .mobile-scroll-fade {
+      @apply transition-all duration-300 ease-out;
+    }
+    
+    .mobile-touch-action {
+      touch-action: manipulation;
+    }
   }
 }

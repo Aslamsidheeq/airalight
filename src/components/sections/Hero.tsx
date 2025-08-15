@@ -63,7 +63,7 @@ const Hero = () => {
           </Reveal>
         </div>
         
-        <Reveal delay={300} direction="right" duration={1000}>
+        <Reveal delay={300} direction="right" duration={1000} progressive>
           <div className="relative group">
             <img
               src={heroImage}

@@ -32,7 +32,7 @@ const Services = () => {
   return (
     <section id="services" className="py-16 md:py-24 overflow-hidden">
       <div className="container">
-        <Reveal className="mx-auto max-w-2xl text-center mb-12">
+        <Reveal className="mx-auto max-w-2xl text-center mb-12" progressive>
           <h2 className="text-3xl md:text-4xl font-display font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Our Cleaning Services</h2>
           <p className="mt-3 text-muted-foreground text-lg">Trusted professionals delivering spotless results across Dubai.</p>
         </Reveal>

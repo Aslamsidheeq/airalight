@@ -1,4 +1,4 @@
-import { useInView } from "@/hooks/useInView";
+import { useInView, useScrollProgress } from "@/hooks/useInView";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -6,6 +6,7 @@ interface RevealProps {
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right' | 'scale';
   duration?: number;
+  progressive?: boolean;
 }
 
 const Reveal = ({ 
@@ -13,11 +14,31 @@ const Reveal = ({
   className = "", 
   delay = 0, 
   direction = 'up',
-  duration = 700 
+  duration = 700,
+  progressive = false
 }: RevealProps) => {
-  const { ref, isInView } = useInView();
+  const { ref: inViewRef, isInView } = useInView();
+  const { ref: progressRef, scrollProgress } = useScrollProgress();
 
   const getTransform = () => {
+    if (progressive && scrollProgress > 0) {
+      const translateValue = (1 - scrollProgress) * 30;
+      switch (direction) {
+        case 'up':
+          return `translateY(${translateValue}px)`;
+        case 'down':
+          return `translateY(${-translateValue}px)`;
+        case 'left':
+          return `translateX(${translateValue}px)`;
+        case 'right':
+          return `translateX(${-translateValue}px)`;
+        case 'scale':
+          return `scale(${0.9 + scrollProgress * 0.1})`;
+        default:
+          return `translateY(${translateValue}px)`;
+      }
+    }
+
     switch (direction) {
       case 'up':
         return isInView ? "translate-y-0" : "translate-y-8";
@@ -34,15 +55,26 @@ const Reveal = ({
     }
   };
 
+  const getOpacity = () => {
+    if (progressive && scrollProgress > 0) {
+      return scrollProgress;
+    }
+    return isInView ? 1 : 0;
+  };
+
+  const ref = progressive ? progressRef : inViewRef;
+
   return (
     <div
       ref={ref}
-      className={`transition-all ease-out ${
-        isInView ? "opacity-100" : "opacity-0"
-      } ${getTransform()} ${className}`}
+      className={`transition-all ease-out ${!progressive ? (isInView ? "opacity-100" : "opacity-0") : ""} ${!progressive ? getTransform() : ""} ${className}`}
       style={{ 
-        transitionDelay: `${delay}ms`,
-        transitionDuration: `${duration}ms`
+        transitionDelay: progressive ? '0ms' : `${delay}ms`,
+        transitionDuration: progressive ? '0ms' : `${duration}ms`,
+        ...(progressive && {
+          transform: getTransform(),
+          opacity: getOpacity(),
+        })
       }}
     >
       {children}
