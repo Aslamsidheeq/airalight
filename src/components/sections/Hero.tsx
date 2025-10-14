@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-airalight.jpg";
+import logo from "@/assets/airalight-logo.jpg";
 import { Phone, Mail, MapPin, Sparkles } from "lucide-react";
 import Reveal from "@/components/animations/Reveal";
 
@@ -7,12 +8,8 @@ const Hero = () => {
   return (
     <header className="relative overflow-hidden">
       <nav className="container flex items-center justify-between py-6">
-        <a href="#" className="flex items-center gap-2 font-display text-xl">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-secondary text-primary">
-            <Sparkles className="h-4 w-4" />
-          </span>
-          <span className="sr-only">Airalight</span>
-          <span aria-hidden>Airalight</span>
+        <a href="#" className="flex items-center gap-2">
+          <img src={logo} alt="Airalight Cleaning Services" className="h-12 w-auto" />
         </a>
         <div className="hidden md:flex items-center gap-4 text-sm text-muted-foreground">
           <a href="#services" className="hover:text-foreground transition-colors">Services</a>
