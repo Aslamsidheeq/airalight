@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-airalight.jpg";
-import logo from "@/assets/airalight-logo.jpg";
+import logo from "@/assets/airalight-logo.png";
 import { Phone, Mail, MapPin, Sparkles } from "lucide-react";
 import Reveal from "@/components/animations/Reveal";
 
