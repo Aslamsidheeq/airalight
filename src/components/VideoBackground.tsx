@@ -12,7 +12,7 @@ const VideoBackground = () => {
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-[2px]" />
     </div>
   );
 };
