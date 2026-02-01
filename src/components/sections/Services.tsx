@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Home, Building2, ShowerHead, Sofa, MoveRight, Sparkles, Utensils, Bath, Droplets, ArrowRight, Check } from "lucide-react";
@@ -236,7 +236,24 @@ const Services = () => {
             staggerDelay={100}
             direction="up"
           >
-            {serviceCards}
+            {services.map((service) => {
+              const { title, icon: Icon, desc } = service;
+              return (
+                <Card 
+                  key={title} 
+                  onClick={() => setSelectedService(service)}
+                  className="group cursor-pointer bg-card hover:shadow-lg transition-all duration-300 border-0 rounded-xl overflow-hidden"
+                >
+                  <CardContent className="p-6 text-center">
+                    <div className="mx-auto w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-semibold text-foreground text-sm mb-1">{title}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{desc}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </StaggerReveal>
 
           {/* CTA Section */}
